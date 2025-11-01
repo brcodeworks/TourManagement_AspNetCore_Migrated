@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Add New Tour";
+    ViewBag.ActivePage = "AddTour";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Add New Tour</h1>
+
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success text-center">
+            @ViewBag.Message
+        </div>
+    }
+
+    <div class="card mx-auto" style="max-width:600px; background-color:#343a40; color:white;">
+        <div class="card-body">
+            <form asp-action="AddTour" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label">Name of Tour</label>
+                    <input type="text" name="tour_name" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Place</label>
+                    <input type="text" name="place" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Days</label>
+                    <input type="text" name="days" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Locations</label>
+                    <input type="text" name="locations" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Price</label>
+                    <input type="text" name="price" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tour Info</label>
+                    <textarea name="tour_info" class="form-control" maxlength="250" rows="3" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Image for Tour</label>
+                    <input type="file" name="pic" class="form-control" />
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success me-2">Add Tour</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

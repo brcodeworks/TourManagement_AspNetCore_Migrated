@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Admin Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tour_Management</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light">
+
+    <div class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card shadow p-4" style="width: 350px;">
+            <h2 class="text-center mb-4">Admin Login</h2>
+
+            <form method="post">
+                @Html.AntiForgeryToken()
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Enter email" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Enter password" required />
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Login</button>
+            </form>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="text-danger text-center mt-3">@ViewBag.Error</div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

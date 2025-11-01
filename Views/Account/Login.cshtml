@@ -1,0 +1,123 @@
+﻿@model Tour_Management.Models.LoginViewModel
+@{
+    ViewData["Title"] = "User Login";
+    Layout = null;
+}
+
+<link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet" />
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        font-family: 'Rubik', sans-serif;
+        background-color: #111;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-container {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 40px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 450px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.6);
+        text-align: center;
+    }
+
+        .login-container h1 {
+            margin-bottom: 30px;
+            font-size: 32px;
+            color: #ffcc66;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        background-color: #cc6600;
+        color: black;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+        .btn:hover {
+            background-color: #b35400;
+        }
+
+    .validation-summary-errors {
+        color: #d9534f;
+        margin-bottom: 15px;
+    }
+
+    .text-danger {
+        color: #d9534f;
+        font-size: 14px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+</style>
+
+<div class="login-container">
+    <h1>User Login</h1>
+
+    <form asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn">Login</button>
+            <a asp-controller="Account" asp-action="SignUp" class="btn">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

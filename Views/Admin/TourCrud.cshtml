@@ -1,0 +1,59 @@
+﻿@model List<Tour_Management.Models.Tour>
+
+@{
+    ViewBag.Title = "Manage Tours";
+    ViewBag.ActivePage = "TourCrud";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">All Tours</h1>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Place</th>
+                <th>Days</th>
+                <th>Price</th>
+                <th>Locations</th>
+                <th>Info</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tour in Model)
+            {
+                <tr class="text-center align-middle">
+                    <td>@tour.TOUR_ID</td>
+                    <td>@tour.TOUR_NAME</td>
+                    <td>@tour.PLACE</td>
+                    <td>@tour.DAYS</td>
+                    <td>@tour.PRICE</td>
+                    <td>@tour.LOCATIONS</td>
+                    <td>@tour.TOUR_INFO</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(tour.pic))
+                        {
+                            <img src="~/Tour_pics/@tour.pic" class="img-thumbnail" style="width:100px; height:100px;" />
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-primary mb-1" asp-action="EditTour" asp-route-id="@tour.TOUR_ID">Edit</a>
+                        <form asp-action="DeleteTour" asp-route-id="@tour.TOUR_ID" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this tour?');">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center mt-3">
+        <a class="btn btn-success" asp-action="AddTour">Add New Tour</a>
+    </div>
+</div>

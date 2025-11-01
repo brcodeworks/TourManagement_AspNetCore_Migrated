@@ -1,0 +1,60 @@
+﻿@model List<Tour_Management.Models.Tour>
+
+@{
+    ViewBag.Title = "Available Tours";
+}
+
+<h1 class="text-center my-4">Available Tours</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        @foreach (var tour in Model)
+        {
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    @if (!string.IsNullOrEmpty(tour.pic))
+                    {
+                        <img src="~/Tour_pics/@tour.pic" class="card-img-top" style="height:200px; object-fit:cover;" />
+                    }
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@tour.TOUR_NAME</h5>
+                        <p class="card-text mb-1"><strong>Days:</strong> @tour.DAYS</p>
+                        <p class="card-text mb-1"><strong>Locations:</strong> @tour.LOCATIONS</p>
+                        <p class="card-text mb-3"><strong>Price:</strong> ₹@tour.PRICE</p>
+                        <a asp-controller="User" asp-action="Order"
+                           asp-route-tourName="@tour.TOUR_NAME"
+                           asp-route-place="@tour.PLACE"
+                           class="btn btn-success">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 10px;
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+    .card-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+    .btn-success {
+        background-color: #04AA6D;
+        border: none;
+    }
+
+        .btn-success:hover {
+            background-color: #039f5b;
+        }
+</style>

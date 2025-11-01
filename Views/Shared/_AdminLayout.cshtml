@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    var adminEmail = Context.Session.GetString("AdminEmail");
+    var isAdminLoggedIn = !string.IsNullOrEmpty(adminEmail);
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Panel</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        .admin-nav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .admin-nav li {
+                float: left;
+                border-right: 1px solid #bbb;
+            }
+
+                .admin-nav li:last-child {
+                    border-right: none;
+                }
+
+                .admin-nav li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+                    .admin-nav li a:hover:not(.active) {
+                        background-color: #111;
+                    }
+
+            .admin-nav .active {
+                background-color: #04AA6D;
+            }
+
+        .page-header {
+            text-align: center;
+            background-image: url('/Pics/adminhp.jpg');
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        @if (isAdminLoggedIn)
+        {
+            <ul class="admin-nav">
+                <li><a class="@ViewBag.ActivePage == " Profile" ? "active" : "" " href="@Url.Action("Profile", "Admin")">Profile</a></li>
+                <li><a class="@ViewBag.ActivePage == " AddTour" ? "active" : "" " href="@Url.Action("AddTour", "Admin")">Add Tours</a></li>
+                <li><a class="@ViewBag.ActivePage == " TourCrud" ? "active" : "" " href="@Url.Action("TourCrud", "Admin")">Manage Tours</a></li>
+                <li><a class="@ViewBag.ActivePage == " AllBooking" ? "active" : "" " href="@Url.Action("AllBooking", "Admin")">Current Bookings</a></li>
+                <li style="float:right"><a href="@Url.Action("Logout", "Admin")">Logout</a></li>
+            </ul>
+        }
+    </header>
+
+    <div class="page-header">
+        <h1>@ViewData["Title"]</h1>
+        <p>
+            Welcome to the Admin Panel.<br />
+            Manage tours, bookings, and users from here.
+        </p>
+    </div>
+
+    <div class="container mt-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted mt-4">
+        <div class="container">
+            &copy; @DateTime.Now.Year - Admin Panel
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
