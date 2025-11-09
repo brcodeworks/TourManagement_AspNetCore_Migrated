@@ -124,9 +124,11 @@ BRCodeWorks is a small technical brand focused on upgrading and modernizing lega
 We help businesses move their old ASP.NET, AngularJS, and SQL Server projects to modern, secure, and efficient versions.
 
 Contact:
-  Email: contact.brcodeworks@gmail.com
----------------------------------------------------
+-----------------
+Website: https://brcodeworks.com/
+Email: hello@brcodeworks.com
 
+---------------------------------------------------
 Tags
 -----
 aspnet-core, migration, ado-net, webforms, mvc, brcodeworks, modernization
